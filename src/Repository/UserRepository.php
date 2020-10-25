@@ -19,12 +19,6 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
-
-    public function exitsUser(UserDto $userDto)
-    {
-        return $this->findOneBy(["username" => $userDto->username]);
-    }
-
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

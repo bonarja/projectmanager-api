@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Form\Model\UserDto;
 use App\Form\Type\UserFormType;
 use App\Repository\UserRepository;
+use App\Service\UserFormProcessor;
+use App\Service\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -27,26 +29,8 @@ class UserController extends AbstractFOSRestController
      */
     public function postAction(
         Request $request,
-        EntityManagerInterface $em,
-        UserRepository $userRepository
+        UserFormProcessor $userFormProcessor
     ) {
-        $userDto = new UserDto();
-        $form = $this->createForm(UserFormType::class, $userDto);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            if ($userRepository->exitsUser($userDto)) {
-                return ["error" => "Username en uso"];
-            }
-
-            $user = new User();
-            $user->setName($userDto->name);
-            $user->setUsername($userDto->username);
-            $user->setPass($userDto->pass);
-            $em->persist($user);
-            $em->flush();
-            return $user;
-        }
+        return ($userFormProcessor)($request);
     }
 }

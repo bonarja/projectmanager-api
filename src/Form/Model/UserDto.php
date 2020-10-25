@@ -13,7 +13,6 @@ class UserDto
 
     public function __construct()
     {
-        // iniciarlo como un arreglo
         $this->categories = [];
     }
 
