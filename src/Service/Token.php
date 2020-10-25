@@ -9,16 +9,20 @@ class Token
     public function __construct()
     {
     }
-    public static function encode($data)
+    public static function encode($data, $life = 60 * 60)
     {
-        $data["iss"] = "bonarja.org";
-        $data["aud"] = "bonarja.org";
-        $jwt = JWT::encode($data, TokenRsa::$privateKey, 'RS256');
+        $time = time();
+        $info = [];
+        $info["iss"] = "bonarja.org";
+        $info["exp"] = $time + $life;
+        $info["aud"] = "bonarja.org";
+        $info["data"] = $data;
+        $jwt = JWT::encode($info, TokenRsa::privateKey(), 'RS256');
         return $jwt;
     }
     public static function decode($jwt)
     {
-        $decoded = JWT::decode($jwt, TokenRsa::$publickey, array('RS256'));
+        $decoded = JWT::decode($jwt, TokenRsa::publickey(), array('RS256'));
         return (object) $decoded;
     }
     public static function getUserIP()

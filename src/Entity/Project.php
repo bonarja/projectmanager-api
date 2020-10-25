@@ -27,6 +27,12 @@ class Project
      */
     private $color;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Project
     public function setColor(?string $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -40,4 +40,12 @@ class UserManager
         $user->setPass($userDto->pass);
         return $user;
     }
+    public function findById($id): User
+    {
+        return $this->userRepository->find($id);;
+    }
+    public function findByUsername(string $username): User
+    {
+        return $this->userRepository->findOneBy(["username" => $username]);
+    }
 }

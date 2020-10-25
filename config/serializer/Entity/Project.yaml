@@ -1,4 +1,4 @@
-App\Entity\User:
+App\Entity\Project:
     attributes:
         id:
             groups: ["project"]
