@@ -1,0 +1,8 @@
+App\Entity\User:
+    attributes:
+        id:
+            groups: ["project"]
+        name:
+            groups: ["project"]
+        color:
+            groups: ["project"]
