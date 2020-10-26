@@ -44,7 +44,7 @@ class UserLoginFormProcessor
                 "name" => $user->getName()
             ]);
 
-            return ["token" => $token, "username" => $user->getUsername()];
+            return ["token" => $token, "name" => $user->getName()];
         }
         return $form;
     }
