@@ -36,7 +36,7 @@ class Auth
             return Response(["error" => "Invalid credentials"]);
         }
 
-        if (!$decode)
+        if (!$decode || $decode->aud != Token::getUserIP())
             return Response(["error" => "Invalid credentials"]);
 
         if ($userManager) {

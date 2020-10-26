@@ -1,0 +1,13 @@
+{
+  "body": {
+    "content": "",
+    "file": false,
+    "fileSize": false
+  },
+  "headers": {
+    "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJib25hcmphLm9yZyIsImV4cCI6MTYwMzY3MDAyMSwiYXVkIjoiYm9uYXJqYS5vcmciLCJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiYm9uYXJqYSJ9fQ.2RM0MNGKgPEBa2RZSetj07cDl25OTzcDGij2YQM8k2399La5_AkPEF2xCyRP5wkC-N2r8Jaj9KfErhwmep5UP7X2jny26Yk47Fi1XvBlF8Dt7PTqbMV37dVT9i96uwTiT4F1UxqoTT3ihbXypsC6WdgUrHuUcVvfpzyQiVfLycaIi2KA3x68DBLa2efVn9T-g9GWMVXWeU-bgggt_C-gTLMEnpXqDDBnPmDfygpeFxKOmVxWJbLS_3cpCqDvd5r177BJjwIb2JHxaDP8C-NWvDWJVKpA4d8m0aMjPeXeMXqwA5SUEdyxIPPdXNN5IvblkV5eF_NoZ78LzHSONRmTyEoeDsXHjj0NzRxqAd0x64Zn4EMtIBgzgfs6yqz48G0R3H_e-aiP6E_AiDpRvlH8xHOQqM71qv7BUiikKx7WXUpmqlUTtrRgl3bXxqWhOGO4U0vnfoGNcJksJpvEyKJP4ngUuHH4f50oihI6kdBYzB3L7zzVwa8Qmdt5hBequ_VlTR-y-pzFnt5ZA8sSICGt-HoJ1Xjy_yW9XpLiQ2ZBTdaV4N1IIp5ErJ1KsXrz_WFQm8fdRrOv5xAZa1ZorYwJjJVVuzFntuNzfKpEfmryVFiFlJ9J_5CcspptqCnUDoJyVv8ftHWdAVkrFmdxuVkq_wliqefQ9ESLtOBbw98vavs"
+  },
+  "method": "GET",
+  "title": "",
+  "url": "http://localhost:8000/api/project"
+}

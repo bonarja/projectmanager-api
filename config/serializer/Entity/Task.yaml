@@ -1,0 +1,10 @@
+App\Entity\Task:
+    attributes:
+        id:
+            groups: ["task"]
+        name:
+            groups: ["task"]
+        description:
+            groups: ["task"]
+        finish:
+            groups: ["task"]

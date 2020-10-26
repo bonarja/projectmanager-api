@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -94,6 +95,10 @@ class User
     public function getProjects(): Collection
     {
         return $this->projects;
+    }
+    public function existProject(Project $project): bool
+    {
+        return $this->projects->contains($project);
     }
 
     public function addProject(Project $project): self

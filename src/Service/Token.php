@@ -13,9 +13,9 @@ class Token
     {
         $time = time();
         $info = [];
-        $info["iss"] = "bonarja.org";
+        $info["iss"] = "bonarja.com";
         $info["exp"] = $time + $life;
-        $info["aud"] = "bonarja.org";
+        $info["aud"] = self::getUserIP();
         $info["data"] = $data;
         $jwt = JWT::encode($info, TokenRsa::privateKey(), 'RS256');
         return $jwt;
