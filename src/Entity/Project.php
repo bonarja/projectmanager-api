@@ -40,6 +40,11 @@ class Project
      */
     private $tasks;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -118,5 +123,17 @@ class Project
     public function getTaskCount(): int
     {
         return count($this->tasks);
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

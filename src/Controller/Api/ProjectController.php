@@ -2,8 +2,6 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Project;
-use App\Form\Model\ProjectDto;
 use App\Service\Auth;
 use App\Service\ProjectFormProcessor;
 use App\Service\UserManager;

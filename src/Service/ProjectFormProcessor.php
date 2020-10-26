@@ -30,6 +30,7 @@ class ProjectFormProcessor
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $this->projectManager->create();
             $project->setName($projectDto->name);
+            $project->setDescription($projectDto->description);
             $project->setColor($projectDto->color);
             $project->setUser($user);
 

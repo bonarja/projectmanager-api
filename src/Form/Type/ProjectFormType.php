@@ -14,6 +14,7 @@ class ProjectFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('description', TextType::class)
             ->add('color', TextType::class);
     }
     public function configureOptions(OptionsResolver $resolver)
