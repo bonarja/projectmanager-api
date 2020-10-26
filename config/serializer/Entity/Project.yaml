@@ -6,3 +6,5 @@ App\Entity\Project:
             groups: ["project"]
         color:
             groups: ["project"]
+        taskCount:
+            groups: ["project"]

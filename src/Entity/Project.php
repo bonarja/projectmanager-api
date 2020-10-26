@@ -115,4 +115,8 @@ class Project
 
         return $this;
     }
+    public function getTaskCount(): int
+    {
+        return count($this->tasks);
+    }
 }
