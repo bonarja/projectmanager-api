@@ -15,16 +15,16 @@ use Symfony\Component\HttpFoundation\Request;
 class TaskController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get(path="/task/{projectid}")
+     * @Rest\Post(path="/tasks")
      * @Rest\View(serializerGroups={"task"}, serializerEnableMaxDepthChecks=true)
      */
-    public function getAction(
-        int $projectid,
+    public function tasksAction(
         UserManager $userManager,
-        ProjectManager $projectManager
+        ProjectManager $projectManager,
+        Request $request
     ) {
+        $projectid = $request->get("project");
         $user = Auth::verify($userManager);
-
         $project = $projectManager->findById($projectid);
         if ($project && $user->existProject($project)) {
             return $project->getTasks();
@@ -36,7 +36,7 @@ class TaskController extends AbstractFOSRestController
      * @Rest\Post(path="/task")
      * @Rest\View(serializerGroups={"task"}, serializerEnableMaxDepthChecks=true)
      */
-    public function postAction(
+    public function createTaskAction(
         UserManager $userManager,
         TaskFormProcessor $taskFormProcessor,
         Request $request
