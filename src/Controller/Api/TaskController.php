@@ -33,7 +33,7 @@ class TaskController extends AbstractFOSRestController
         }
     }
     /**
-     * @Rest\Post(path="/task")
+     * @Rest\Post(path="/task/create")
      * @Rest\View(serializerGroups={"task"}, serializerEnableMaxDepthChecks=true)
      */
     public function createTaskAction(
