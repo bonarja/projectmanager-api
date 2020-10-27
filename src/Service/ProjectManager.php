@@ -31,4 +31,9 @@ class ProjectManager
     {
         return $this->projectRepository->find($id);
     }
+    public function delete(Project $project)
+    {
+        $this->em->remove($project);
+        $this->em->flush();
+    }
 }

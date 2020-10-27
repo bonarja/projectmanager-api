@@ -48,4 +48,9 @@ class UserManager
     {
         return $this->userRepository->findOneBy(["username" => $username]);
     }
+    public function delete($user)
+    {
+        $this->em->remove($user);
+        $this->em->flush($user);
+    }
 }

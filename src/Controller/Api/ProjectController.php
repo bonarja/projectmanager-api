@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Service\Auth;
 use App\Service\ProjectFormProcessor;
+use App\Service\ProjectManager;
 use App\Service\UserManager;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -31,5 +32,19 @@ class ProjectController extends AbstractFOSRestController
     ) {
         $user = Auth::verify($userManager);
         return ($projectFormProcessor)($request, $user);
+    }
+    /**
+     * @Rest\Delete(path="/project")
+     * @Rest\View(serializerGroups={"project"}, serializerEnableMaxDepthChecks=true)
+     */
+    public function deleteAction(Request $request, ProjectManager $projectManager, UserManager $userManager)
+    {
+        $user = Auth::verify($userManager);
+        $project = $projectManager->findById($request->get("project"));
+        if ($project && $user->existProject($project)) {
+            $projectManager->delete($project);
+            return ["success" => true];
+        }
+        return ["error" => "No se ha podido eliminar el proyecto"];
     }
 }

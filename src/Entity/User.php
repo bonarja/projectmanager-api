@@ -101,6 +101,15 @@ class User
         return $this->projects->contains($project);
     }
 
+    public function getTask(Task $task): Task
+    {
+        foreach ($this->projects as $project) {
+            if ($project->exitTask($task)) {
+                return $task;
+            }
+        }
+        return null;
+    }
     public function addProject(Project $project): self
     {
         if (!$this->projects->contains($project)) {

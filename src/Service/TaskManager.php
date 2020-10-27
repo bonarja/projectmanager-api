@@ -30,4 +30,15 @@ class TaskManager
     {
         return $this->taskRepository->find($id);;
     }
+    public function removeById($id)
+    {
+        $task =  $this->taskRepository->find($id);
+        $this->em->remove($task);
+        $this->em->flush();
+    }
+    public function delete(Task $task)
+    {
+        $this->em->remove($task);
+        $this->em->flush();
+    }
 }

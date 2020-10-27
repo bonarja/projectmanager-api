@@ -108,7 +108,10 @@ class Project
 
         return $this;
     }
-
+    public function exitTask(Task $task): bool
+    {
+        return $this->tasks->contains($task);
+    }
     public function removeTask(Task $task): self
     {
         if ($this->tasks->removeElement($task)) {
