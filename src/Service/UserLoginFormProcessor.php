@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use App\Form\Model\UserLoginDto;
 use App\Form\Type\UserLoginFormType;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -33,11 +34,9 @@ class UserLoginFormProcessor
             if (!$user) {
                 return ["error" => "Invalid credentials"];
             }
-
             if (!Pass::verify($userLoginDto->pass, $user->getPass())) {
                 return ["error" => "Invalid credentials"];
             }
-
 
             $token = Token::encode([
                 "id" => $user->getId(),

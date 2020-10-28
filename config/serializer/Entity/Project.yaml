@@ -1,12 +1,12 @@
 App\Entity\Project:
     attributes:
         id:
-            groups: ["project"]
+            groups: ["project", "projectUpdate"]
         name:
-            groups: ["project"]
+            groups: ["project", "projectUpdate"]
         color:
-            groups: ["project"]
+            groups: ["project", "projectUpdate"]
         description:
-            groups: ["project"]
+            groups: ["project", "projectUpdate"]
         taskCount:
             groups: ["project"]

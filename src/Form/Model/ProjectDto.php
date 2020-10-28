@@ -5,6 +5,7 @@ namespace App\Form\Model;
 
 class ProjectDto
 {
+    public $id;
     public $name;
     public $color;
     public $description;

@@ -4,7 +4,9 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Form\Model\ProjectDto;
+use App\Form\Model\UserDto;
 use App\Form\Type\ProjectFormType;
+use App\Form\Type\UserFormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,16 +25,32 @@ class ProjectFormProcessor
 
     public function  __invoke(Request $request, User $user)
     {
+        $update = $request->get("id");
+
         $projectDto = new ProjectDto();
-        $form = $this->formFactory->create(ProjectFormType::class, $projectDto);
+        $form = $this->formFactory->create(
+            ProjectFormType::class,
+            $projectDto,
+            ["method" => $update ? "patch" : "post"]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $project = $this->projectManager->create();
+
+            $project = null;
+            if ($update) {
+                $project = $this->projectManager->findById($update);
+                if (!$user->existProject($project)) {
+                    return ["error" => "Invalid project"];
+                }
+            } else {
+                $project = $this->projectManager->create();
+            }
+
             $project->setName($projectDto->name);
             $project->setDescription($projectDto->description);
             $project->setColor($projectDto->color);
-            $project->setUser($user);
+            !$update && $project->setUser($user);
 
             $this->projectManager->save($project);
             return $project;

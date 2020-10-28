@@ -1,6 +1,6 @@
 App\Entity\User:
     attributes:
-        username:
+        name:
             groups: ["userlogin"]
-        pass:
+        token:
             groups: ["userlogin"]

@@ -3,6 +3,6 @@ App\Entity\User:
         id:
             groups: ["user"]
         name:
-            groups: ["user"]
+            groups: ["user", "userUpdate"]
         username:
             groups: ["user"]

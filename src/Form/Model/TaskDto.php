@@ -5,6 +5,7 @@ namespace App\Form\Model;
 
 class TaskDto
 {
+    public $id;
     public $name;
     public $description;
     public $finish;

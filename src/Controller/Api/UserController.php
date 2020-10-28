@@ -2,14 +2,10 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\User;
-use App\Form\Model\UserDto;
-use App\Form\Type\UserFormType;
-use App\Repository\UserRepository;
+
 use App\Service\Auth;
 use App\Service\UserFormProcessor;
 use App\Service\UserManager;
-use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,11 +34,26 @@ class UserController extends AbstractFOSRestController
      * @Rest\Delete(path="/user")
      * @Rest\View(serializerGroups={"user"}, serializerEnableMaxDepthChecks=true)
      */
-    public function removeUser(Request $request, UserManager $userManager)
+    public function deleteAction(Request $request, UserManager $userManager)
     {
         $user = Auth::verify($userManager);
         $userManager->delete($user);
 
         return ["success" => true];
+    }
+    /**
+     * @Rest\Patch(path="/user")
+     * @Rest\View(serializerGroups={"userUpdate"}, serializerEnableMaxDepthChecks=true)
+     */
+    public function updateAction(Request $request, UserManager $userManager)
+    {
+        $user = Auth::verify($userManager);
+        $userName = $request->get("name");
+
+        if (!$userName) {
+            return ["error", "require name"];
+        }
+        $user->setName($userName);
+        return $userManager->save($user);
     }
 }

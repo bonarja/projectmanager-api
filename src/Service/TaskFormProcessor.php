@@ -26,21 +26,30 @@ class TaskFormProcessor
 
     public function  __invoke(Request $request, User $user)
     {
+        $update = $request->get("id");
+
         $taskDto = new TaskDto();
-        $form = $this->formFactory->create(TaskFormType::class, $taskDto);
+        $form = $this->formFactory->create(
+            TaskFormType::class,
+            $taskDto,
+            ["method" => $update ? "patch" : "post"]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $task = $this->taskManager->create();
+            $task = $update ? $this->taskManager->findById($update) : $this->taskManager->create();
+
+
             $task->setName($taskDto->name);
             $task->setDescription($taskDto->description);
             $task->setFinish($taskDto->finish);
 
             $project = $this->projectManager->findById($taskDto->project);
 
+
             if ($project && $user->existProject($project)) {
-                $task->setProject($project);
+                !$update && $task->setProject($project);
                 return $this->taskManager->save($task);
             } else {
                 return ["error" => "Invalid project"];

@@ -44,9 +44,11 @@ class UserManager
     {
         return $this->userRepository->find($id);;
     }
-    public function findByUsername(string $username): User
+    public function findByUsername(string $username): ?User
     {
-        return $this->userRepository->findOneBy(["username" => $username]);
+        $user = $this->userRepository->findOneBy(["username" => $username]);
+        if (!$user) return null;
+        return $user;
     }
     public function delete($user)
     {

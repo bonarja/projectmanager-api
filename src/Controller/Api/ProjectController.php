@@ -47,4 +47,16 @@ class ProjectController extends AbstractFOSRestController
         }
         return ["error" => "No se ha podido eliminar el proyecto"];
     }
+    /**
+     * @Rest\Patch(path="/project")
+     * @Rest\View(serializerGroups={"projectUpdate"}, serializerEnableMaxDepthChecks=true)
+     */
+    public function updateAction(
+        Request $request,
+        ProjectFormProcessor $projectFormProcessor,
+        UserManager $userManager
+    ) {
+        $user = Auth::verify($userManager);
+        return ($projectFormProcessor)($request, $user);
+    }
 }
